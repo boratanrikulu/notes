@@ -1,0 +1,70 @@
+gap_x 63
+gap_y 0
+alignment top_right
+update_interval 0.5
+use_xft yes
+xftfont sans:size=8
+own_window yes
+own_window_type normal
+own_window_transparent no
+own_window_colour 000000
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+own_window_argb_visual yes
+own_window_argb_value 128
+double_buffer yes
+draw_shades no
+draw_graph_borders no
+default_bar_size 0 4
+default_graph_size 0 20
+border_inner_margin 10
+default_color ffffff
+
+
+TEXT
+System ${hr 1}
+${color FEA63C}${alignc}${nodename}${color}
+${alignc}linux ${kernel}
+
+Processor ${hr 1}
+${alignc}${exec lscpu | grep -i "model name" | cut -c 24-}
+${alignc}${freq}MHz
+
+Cpu0${alignr}${color FEA63C}${cpu cpu1}%${color}
+${cpugraph cpu1}
+${cpubar cpu1}
+Cpu1${alignr}${color FEA63C}${cpu cpu2}%${color}
+${cpugraph cpu2}
+${cpubar cpu2}
+Cpu Usage${alignr} %
+${top name 1}${alignr}${top cpu 1}
+${top name 2}${alignr}${top cpu 2}
+${top name 3}${alignr}${top cpu 3}
+${top name 4}${alignr}${top cpu 4}
+${top name 5}${alignr}${top cpu 5}
+${top name 6}${alignr}${top cpu 6}
+${alignr}Total: ${color FEA63C}${cpu}%${color}
+${alignr} Temp: ${color FEA63C}${hwmon temp 1}°C${color}
+RAM ${hr 1}
+${memgraph}
+${membar}
+RAM Usage${alignr} %
+${top_mem name 1}${alignr}${top_mem mem 1}
+${top_mem name 2}${alignr}${top_mem mem 2}
+${top_mem name 3}${alignr}${top_mem mem 3}
+${top_mem name 4}${alignr}${top_mem mem 4}
+${top_mem name 5}${alignr}${top_mem mem 5}
+${top_mem name 6}${alignr}${top_mem mem 6}
+${alignr}Total: ${color FEA63C}${memperc}%${color}
+${alignr}${color FEA63C}${mem}${color}
+Disks ${hr 1}
+
+Linux  ${color FEA63C}${fs_used_perc /}%${color}${alignr} ${fs_used /} / ${fs_size /}
+${fs_bar /}
+
+Depo  ${color FEA63C}${fs_used_perc /media/fsutil/Depo}%${color}${alignr} ${fs_used /media/fsutil/Depo} / ${fs_size /media/fsutil/Depo}
+${fs_bar /media/fsutil/Depo}
+
+Network ${hr 1}
+Down ${color FEA63C}${downspeed wlp2s0}${color}${alignr}Up ${color FEA63C}${upspeed wlp2s0}${color}
+Total ${color FEA63C}${totaldown wlp2s0}${color}${alignr}Total ${color FEA63C}${totalup wlp2s0}${color}
+$alignc Local IP ${color FEA63C}${addr wlp2s0}${color}
