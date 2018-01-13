@@ -1,4 +1,4 @@
-## change /etc/apache2/apache2.conf
+change /etc/apache2/apache2.conf
 
 ```
 ...
@@ -9,7 +9,7 @@
 ...
 ```
 
-## change /etc/apache2/sites-available/000-default.conf
+change /etc/apache2/sites-available/000-default.conf
 
 ```
 ...
