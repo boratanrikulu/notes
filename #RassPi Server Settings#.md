@@ -1,7 +1,7 @@
-#RassPi Server Settings
+# RassPi Server Settings
 Torrent Server
 
-##General system settings
+## General system settings
 
 ```
 sudo (ALL:ALL)
@@ -21,7 +21,7 @@ ufw status
 dpkg-reconfigure tzdata
 ```
 
-##Extarnal HDD connect settings
+## Extarnal HDD connect settings
 
 ```
 apt install ntfs-3g
@@ -31,7 +31,7 @@ nano /etc/fstab &&
 	/dev/sda1 /media/Depo ntfs defaults	0 0
 ```
 
-##Apache2 server settings
+## Apache2 server settings
 
 ```
 apt install apache2
@@ -45,7 +45,7 @@ nano /etc/apache2/sites-available/000-default.conf
 	DocumentRoot /media/Depo
 ```
 
-##transmission-daemon
+## transmission-daemon
 
 ```
 apt install transmission-daemon
