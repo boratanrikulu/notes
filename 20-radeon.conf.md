@@ -1,6 +1,6 @@
-source: https://cubethethird.wordpress.com/2016/06/14/eliminate-screen-tearing-with-amd-gpu-on-ubuntu/
+source : https://cubethethird.wordpress.com/2016/06/14/eliminate-screen-tearing-with-amd-gpu-on-ubuntu/
 
-path = /usr/share/X11/xorg.conf.d/
+path : /usr/share/X11/xorg.conf.d/
 
 
 ```
