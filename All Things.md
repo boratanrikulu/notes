@@ -19,5 +19,5 @@ sublime-text
 ## Trash (KEEP)
 
 ```
-autoconf build-essential xubuntu-restricted-extras gvfs-backends python-pip lightdm-gtk-greeter-settings menulibre opera google-chromegpicview synaptic
+autoconf build-essential xubuntu-restricted-extras gvfs-backends python-pip lightdm-gtk-greeter-settings menulibre opera google-chrome gpicview synaptic
 ```
