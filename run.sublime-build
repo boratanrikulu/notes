@@ -1,0 +1,4 @@
+{
+	"shell_cmd": "xfce4-terminal -e 'bash -c \"${file_path}/${file_base_name};echo; echo Press ENTER to continue; read line; exit; exec bash\"'",
+	"selector" : "source.c, source.c++, source.cxx, source.cpp",
+}
