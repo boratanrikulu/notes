@@ -16,8 +16,7 @@ $ mount /dev/sdx1 /mnt
 $ mkdir /mnt/boot (may be not needed)
 $ less /etc/pacman.d/mirrorlist (to see current mirrors)
 $ pacman -S reflector
-$ reflector --country "United States" --age 12 --completion-percent 100 
---sort rate --save /etc/pacman.d/mirrorlist
+$ reflector --country "United States" --age 12 --completion-percent 100 --sort rate --save /etc/pacman.d/mirrorlist
 $ pacman -Syy (the second 'y' to force a refresh even if up to date)
 $ less /etc/pacman.d/mirrorlist (to see mirrors changed)
 $ pacstrap /mnt base base-devel
