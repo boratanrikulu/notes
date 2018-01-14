@@ -15,9 +15,10 @@ $ mkfs.ext4 /dev/sdx1
 $ mount /dev/sdx1 /mnt
 $ mkdir /mnt/boot (may be not needed)
 $ less /etc/pacman.d/mirrorlist (to see current mirrors)
+$ pacman -Syy
 $ pacman -S reflector
 $ reflector --country "United States" --age 12 --completion-percent 100 --sort rate --save /etc/pacman.d/mirrorlist
-$ pacman -Syy (the second 'y' to force a refresh even if up to date)
+$ pacman -Syy
 $ less /etc/pacman.d/mirrorlist (to see mirrors changed)
 $ pacstrap /mnt base base-devel
 $ genfstab -U /mnt >> /mnt/etc/fstab
@@ -73,6 +74,8 @@ $ nano /etc/X11/xorg.conf.d/20-nouveau.conf [3]
   			Identifier      "Nvidia Open Source"
           		Driver		"nouveau"
 		  EndSection
+$ nano /etc/pacman.conf
+		* remove '#' from '#[multilib]' section
 $ pacman -S mesa lib32-mesa
 --
 $ pacman -S xfce4
@@ -83,6 +86,14 @@ $ pacman -S xfce4-pulseaudio-plugin pavucontrol xfce4-taskmanager
 $ pacman -S lightdm lightdm-gtk-greeter
 $ pacman -S lightdm-gtk-greeter-settings
 $ systemctl enable lightdm.service
+--
+$ pacman -S light-locker
+$ nano /usr/bin/xflock4
+		* for lock_cmd in \
+    			"light-locker-command -l"\
+    			"xscreensaver-command -lock" \
+    			"gnome-screensaver-command --lock"
+		  do
 --
 $ pacman -S networkmanager networkmanager-applet
 $ pacman -S gnome-keyring
@@ -96,8 +107,6 @@ $ localectl --no-convert set-x11-keymap tr
 $ less /etc/X11/xorg.conf.d/00-keyboard.conf (to see changed)
 $ echo "blacklist pcspkr" > /etc/modprobe.d/nobeep.conf
 $ pacman -S gvfs ntfs-3g
-$ nano /etc/pacman.conf
-		* remove '#' from '#[multilib]' section
 $ pacman -S xdg-user-dirs
 $ xdg-user-dirs-update
 $ systemctl enable fstrim.timer
