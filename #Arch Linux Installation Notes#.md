@@ -71,7 +71,7 @@ $ pacman -S xf86-video-nouveau
 $ nano /etc/X11/xorg.conf.d/20-nouveau.conf [3]
 		* Section "Device"
   			Identifier      "Nvidia Open Source"
-          		Driver          "nouveau"
+          		Driver		"nouveau"
 		  EndSection
 $ pacman -S mesa lib32-mesa
 --
