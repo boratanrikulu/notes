@@ -68,7 +68,7 @@ $ nano /etc/X11/xorg.conf.d/20-intel.conf
           		Option  "TearFree"      "true"
 		  EndSection
 $ pacman -S xf86-video-nouveau
-$ nano /etc/X11/xorg.conf.d/20-nouveau.conf
+$ nano /etc/X11/xorg.conf.d/20-nouveau.conf [3]
 		* Section "Device"
   			Identifier      "Nvidia Open Source"
           		Driver          "nouveau"
@@ -121,4 +121,8 @@ $ reboot
 
    https://wiki.archlinux.org/index.php/AUR_helpers
 
-[2]nogroup: https://bbs.archlinux.org/viewtopic.php?id=75693
+[2]nogroup : https://bbs.archlinux.org/viewtopic.php?id=75693
+
+[3]nouveau : https://wiki.archlinux.org/index.php/nouveau#Keep_NVIDIA_driver_installed
+
+   https://wiki.archlinux.org/index.php/xorg#Driver_installation
