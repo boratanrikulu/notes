@@ -59,9 +59,8 @@ $ pacman -Syy
 --
 $ pacman -S pulseaudio pulseaudio-alsa
 $ pacman -S xorg xorg-xinit
-$ pacman -S mesa
 $ pacman -S xf86-video-intel
-$ nano /usr/share/X11/xorg.conf.d/20-intel.conf
+$ nano /etc/X11/xorg.conf.d/20-intel.conf
 		* Section "Device"
   			Identifier      "Intel Graphics"
           		Driver          "intel"
@@ -69,6 +68,13 @@ $ nano /usr/share/X11/xorg.conf.d/20-intel.conf
           		Option  "DRI"   "3"
           		Option  "TearFree"      "true"
 		  EndSection
+$ pacman -S xf86-video-nouveau
+$ nano /etc/X11/xorg.conf.d/20-nouveau.conf
+		* Section "Device"
+  			Identifier      "Nvidia Open Source"
+          		Driver          "nouveau"
+		  EndSection
+$ pacman -S mesa lib32-mesa
 --
 $ pacman -S xfce4
 $ echo "exec startxfce4" > /home/username/.xinitrc
