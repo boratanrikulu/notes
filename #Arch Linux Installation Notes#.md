@@ -11,9 +11,12 @@ $ timedatectl set-ntp true
 $ lsblk (or fdisk -l) (to see disks)
 $ cfdisk /dev/sdx (to partite the disk)
 		* /dev/sdx1 -> /
+		* /dev/sdx2 -> /boot/efi
 $ mkfs.ext4 /dev/sdx1
+$ mkfs.fat -F32 /dev/sdx2
 $ mount /dev/sdx1 /mnt
-$ mkdir /mnt/boot (may be not needed)
+$ mkdir /mnt/boot && mkdir /mnt/boot/efi
+$ mount /dev/sdx2 /mnt/boot/efi
 $ less /etc/pacman.d/mirrorlist (to see current mirrors)
 $ pacman -Syy
 $ pacman -S reflector
@@ -39,8 +42,8 @@ $ arch-chroot /mnt
 ~ systemctl enable dhcpcd
 ~ pacman -S iw wpa_supplicant
 ~ passwd
-~ pacman -S grub
-~ grub-install --target=i386-pc /dev/sdx
+~ pacman -S grub efibootmgr
+~ grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=archgrub
 ~ add the paremeter "pci=nomsi" > /etc/default/grub
 ~ grub-mkconfig -o /boot/grub/grub.cfg
 ~ exit
