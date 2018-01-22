@@ -1,7 +1,7 @@
 # Arch Linux Installation Notes
 I am not a archlinux (or linux) expert so use codes if you know	what you're doing
 
-Some steps have solutions for my PC. You won’t need to do these steps your PC has no issues with linux.
+Some steps have solutions for my PC. You won’t need to do these steps if your PC has no issues with linux.
 
 [Source](https://wiki.archlinux.org/index.php/Installation_guide) wiki.archlinux.org
 
