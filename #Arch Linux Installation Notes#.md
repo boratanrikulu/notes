@@ -1,20 +1,19 @@
 # Arch Linux Installation Notes
 I am not a archlinux (or linux) expert so use codes if you know	what you're doing
 
-Some steps have solutions for my PC. You won’t need to do these steps if your PC has no issues with linux.
+Some steps have solutions for my PC. You won’t need to do these steps if your PC has no issues with linux. These steps are marked with "**!"
 
 [Source](https://wiki.archlinux.org/index.php/Installation_guide) wiki.archlinux.org
 
 
-	! add parameter pci=nomsi (if you have rtl8723be)
-	$ loadkeys trq (turkish keyboard layout)
-	$ wifi-menu
-	$ ping archlinux.org
+	**! add parameter pci=nomsi (if you have pci error issue)
+	$ loadkeys trq
+	$ ping archlinux.org (if you want to use wireless connection use this -> wifi-menu)
 	$ timedatectl set-ntp true
 	$ lsblk (or fdisk -l) (to see disks)
 	$ cfdisk /dev/sdx (to partite the disk)
 			* /dev/sdx1 -> /		[30G]
-			* /dev/sdx2 -> /boot/efi	[500M]
+			* /dev/sdx2 -> /boot/efi		[500M]
 			* /dev/sdx3 -> /home		[~]
 	$ mkfs.ext4 /dev/sdx1
 	$ mkfs.fat -F32 /dev/sdx2
@@ -28,8 +27,8 @@ Some steps have solutions for my PC. You won’t need to do these steps if your 
 	$ pacman -Syy
 	$ pacman -S reflector
 	$ reflector --country "United States" --age 12 --completion-percent 100 --sort rate --save /etc/pacman.d/mirrorlist
-	$ pacman -Syy
 	$ less /etc/pacman.d/mirrorlist (to see mirrors changed)
+	$ pacman -Syy
 	$ pacstrap /mnt base base-devel
 	$ genfstab -U /mnt >> /mnt/etc/fstab
 	$ less /mnt/etc/fstab (to see fstab changed)
@@ -37,7 +36,7 @@ Some steps have solutions for my PC. You won’t need to do these steps if your 
 	~ ln -sf /usr/share/zoneinfo/Turkey /etc/localtime
 	~ hwclock --systohc
 	~ nano /etc/locale.gen
-			*  remove '#' from '#en_GB.UTF-8 UTF-8'
+			*  remove '#' from '#en_GB.UTF-8 UTF-8' (or what you want)
 	~ locale-gen
 	~ echo "LANG=en_GB.UTF-8" > /etc/locale.conf
 	~ echo "KEYMAP=trq" > /etc/vconsole.conf
@@ -50,73 +49,52 @@ Some steps have solutions for my PC. You won’t need to do these steps if your 
 	~ passwd
 	~ pacman -S grub efibootmgr
 	~ grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=archgrub
-	~ add the paremeter "pci=nomsi" > /etc/default/grub
+	**! add the paremeter "pci=nomsi" > /etc/default/grub (if you have pci error issue)
 	~ grub-mkconfig -o /boot/grub/grub.cfg
 	~ exit
 	$ umount -R /mnt/home && umount -R /mnt/boot/efi && umount -R /mnt
 	$ reboot
 
 
+	$! login as "root" user
+	--
 	$ useradd -m -g users -G wheel -s /bin/bash username
 	$ passwd username
 	$ EDITOR=nano visudo
 			* remove '%' from '%wheel ALL=(ALL) ALL'
 	$ su username
-	$ pacman -S bash-completion (to auto-complete commands)
-	$ pacman -Syy
+	$ sudo pacman -S bash-completion (to auto-complete commands)
+	$ sudo pacman -Syy
+	$ exit
+	$ reboot
 	--
-	$ pacman -S xorg xorg-xinit
-	$ pacman -S pulseaudio pulseaudio-alsa
-**************
-$ pacman -S xf86-video-intel
-$ nano /etc/X11/xorg.conf.d/20-intel.conf
-* Section "Device"
-Identifier      "Intel Graphics"
-Driver          "intel"
-Option  "AccelMethod"   "sna"
-Option  "DRI"   "3"
-Option  "TearFree"      "true"
-EndSection
-$ pacman -S xf86-video-nouveau
-$ nano /etc/X11/xorg.conf.d/20-nouveau.conf [3]
-* Section "Device"
-Identifier      "Nvidia Open Source"
-Driver		"nouveau"
-EndSection
-	$ nano /etc/pacman.conf
-	* remove '#' from '#[multilib]' section
-$ pacman -S lib32-mesa
-**************
+	$! login as "username" user
 	--
-	$ pacman -S xfce4
-	$ echo "exec startxfce4" > /home/username/.xinitrc
-	$ pacman -S firefox mousepad gnome-logs gnome-system-log
-	$ pacman -S libva-intel-driver libva-vdpau-driver qt5-base ladspa speech-dispatcher
-	$ pacman -S xfce4-terminal xfce4-taskmanager xfce4-pulseaudio-plugin pavucontrol
+	$ sudo pacman -S xorg xorg-xinit
+	$ sudo pacman -S pulseaudio pulseaudio-alsa
 	--
-	$ pacman -S lightdm lightdm-gtk-greeter
-	$ pacman -S lightdm-gtk-greeter-settings
-	$ systemctl enable lightdm.service
+	$ sudo pacman -S budgie-desktop gnome-backgrounds gnome-control-center gnome-screensaver gnome-terminal nautilus network-manager-applet gnome-keyring
+	$ echo -e "export XDG_CURRENT_DESKTOP=Budgie:GNOME\nexec budgie-desktop" > /home/username/.xinitrc
+	$ sudo pacman -S evince gnome-calculator gnome-calender gnome-font-viewe gnome-screenshot gnome-system-monitor gnome-user-docs gvfs-mtp xdg-user-dirs ntfs-3g gedit gnome-logs gnome-system-log dconf-editor
+	$ sudo pacman -S firefox
+	$ sudo pacman -S libva-intel-driver libva-vdpau-driver
 	--
-	$ pacman -S xscreensaver
+	$ sudo pacman -S lightdm lightdm-gtk-greeter
+	$ sudo pacman -S lightdm-gtk-greeter-settings
+	$ sudo systemctl enable lightdm.service
 	--
-	$ pacman -S networkmanager network-manager-applet
-**************
-$ pacman -S gnome-keyring
-**************
-	$ pacman -S openssh networkmanager-openvpn
-	$ systemctl enable NetworkManager.service
+	$ sudo pacman -S openssh networkmanager-openvpn
+	$ sudo systemctl enable NetworkManager.service
 	--
-	$ pacman -S intel-ucode
-	$ grub-mkconfig -o /boot/grub/grub.cfg
+	$ sudo pacman -S intel-ucode
+	$ sudo grub-mkconfig -o /boot/grub/grub.cfg
 	--
-	$ localectl --no-convert set-x11-keymap tr
+	$ sudo localectl --no-convert set-x11-keymap tr
 	$ less /etc/X11/xorg.conf.d/00-keyboard.conf (to see changed)
-	$ echo "blacklist pcspkr" > /etc/modprobe.d/nobeep.conf
-	$ pacman -S gvfs ntfs-3g
-	$ pacman -S xdg-user-dirs
+	$ echo "blacklist pcspkr" | sudo tee /etc/modprobe.d/nobeep.conf (if you dont want to hear "beep sound" from your PC)
+	**! echo "options rtl8723be ant_sel=2" | sudo tee /etc/modprobe.d/50-rtl8723be.conf[4]
 	$ xdg-user-dirs-update
-	$ systemctl enable fstrim.timer
+	$ sudo systemctl enable fstrim.timer
 	--
 	$ sudo pacman -S ufw
 	$ sudo systemctl enable ufw.service
@@ -142,3 +120,5 @@ $ pacman -S gnome-keyring
 [3]nouveau : https://wiki.archlinux.org/index.php/nouveau#Keep_NVIDIA_driver_installed
 
    https://wiki.archlinux.org/index.php/xorg#Driver_installation
+
+[4]rtl8723be : https://github.com/boratanrikulu/notes/blob/master/rtl8723be.md
