@@ -79,8 +79,13 @@ Some steps have solutions for my PC. You won’t need to do these steps if your 
 	$ sudo pacman -S xfce4
 	$ echo "exec startxfce4" > .xinitrc
 	$ sudo pacman -S firefox
-	$ sudo pacman -S xfce4-pulseaudio-plugin pavucontrol xfce4-taskmanager
-	$ sudo pacman -S gedit gnome-system-log gnome-logs gnome-calculator evince
+	$ sudo pacman -S xfce4-pulseaudio-plugin pavucontrol
+	$ sudo pacman -S xfce4-notifyd xfce4-notes-plugin xfce4-screenshooter xfce4-clipman-plugin xfce4-taskmanager
+	$ sudo pacman -S gedit gnome-system-log gnome-logs gnome-calculator gnome-disk-utility evince
+	$ sudo pacman -S  viewnior unrar p7zip file-roller htop
+	$ sudo pacman -S screenfetch
+	$ sudo pacman -S arc-gtk-theme arc-icon-theme gtk-engine-murrine 
+	$ sudo pacman -S conky plank
 	--
 	$ sudo pacman -S lightdm
 	$ sudo pacman -S lightdm-gtk-greeter
@@ -102,10 +107,6 @@ Some steps have solutions for my PC. You won’t need to do these steps if your 
 	$ sudo pacman -S xdg-user-dirs
 	$ xdg-user-dirs-update
 	$ sudo systemctl enable fstrim.timer
-	--
-	$ sudo pacman -S screenfetch
-	$ sudo pacman -S arc-gtk-theme arc-icon-theme gtk-engine-murrine 
-	$ sudo pacman -S conky plank
 	--
 	$ sudo pacman -S ufw
 	$ sudo systemctl enable ufw.service
