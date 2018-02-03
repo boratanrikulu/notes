@@ -46,6 +46,7 @@ Some steps have solutions for my PC. You won’t need to do these steps if your 
 			  ::1		localhost
 			  127.0.1.1	PcNAME.localdomain	PcNAME
 	~ pacman -S iw wpa_supplicant dialog
+	~ systemctl enable dhcpcd
 	~ passwd
 	~ pacman -S grub efibootmgr
 	~ grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=archgrub
@@ -72,18 +73,22 @@ Some steps have solutions for my PC. You won’t need to do these steps if your 
 	--
 	$ sudo pacman -S xorg xorg-xinit
 	$ sudo pacman -S pulseaudio pulseaudio-alsa
+	$ sudo pacman -S xf86-video-intel xf86-video-nouveau
+	$ sudo pacman -S libva-vdpau-driver libvdpau-va-gl libva-intel-driver 
 	--
-	$ sudo pacman -S budgie-desktop gnome-backgrounds gnome-control-center gnome-screensaver gnome-terminal nautilus network-manager-applet gnome-keyring
-	$ echo -e "export XDG_CURRENT_DESKTOP=Budgie:GNOME\nexec budgie-desktop" > /home/username/.xinitrc
-	$ sudo pacman -S evince gnome-calculator gnome-calender gnome-font-viewe gnome-screenshot gnome-system-monitor gnome-user-docs gvfs-mtp xdg-user-dirs ntfs-3g gedit gnome-logs gnome-system-log dconf-editor
+	$ sudo pacman -S xfce4
+	$ echo "exec startxfce4" > .xinitrc
 	$ sudo pacman -S firefox
-	$ sudo pacman -S libva-intel-driver libva-vdpau-driver
+	$ sudo pacman -S xfce4-pulseaudio-plugin pavucontrol xfce4-taskmanager
+	$ sudo pacman -S gedit gnome-system-log gnome-logs gnome-calculator evince
 	--
-	$ sudo pacman -S lightdm lightdm-gtk-greeter
+	$ sudo pacman -S lightdm
+	$ sudo pacman -S lightdm-gtk-greeter
 	$ sudo pacman -S lightdm-gtk-greeter-settings
 	$ sudo systemctl enable lightdm.service
 	--
-	$ sudo pacman -S openssh networkmanager-openvpn
+	$ sudo pacman -S networkmanager network-manager-applet gnome-keyring
+	$ sudo pacman -S openvpn openssh (if needed, install networkmanager-openvpn)
 	$ sudo systemctl enable NetworkManager.service
 	--
 	$ sudo pacman -S intel-ucode
@@ -93,8 +98,14 @@ Some steps have solutions for my PC. You won’t need to do these steps if your 
 	$ less /etc/X11/xorg.conf.d/00-keyboard.conf (to see changed)
 	$ echo "blacklist pcspkr" | sudo tee /etc/modprobe.d/nobeep.conf (if you dont want to hear "beep sound" from your PC)
 	**! echo "options rtl8723be ant_sel=2" | sudo tee /etc/modprobe.d/50-rtl8723be.conf[4]
+	$ sudo pacman -S gvfs gvfs-mtp ntfs-3g
+	$ sudo pacman -S xdg-user-dirs
 	$ xdg-user-dirs-update
 	$ sudo systemctl enable fstrim.timer
+	--
+	$ sudo pacman -S screenfetch
+	$ sudo pacman -S arc-gtk-theme arc-icon-theme gtk-engine-murrine 
+	$ sudo pacman -S conky plank
 	--
 	$ sudo pacman -S ufw
 	$ sudo systemctl enable ufw.service
