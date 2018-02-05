@@ -1,7 +1,7 @@
 ## Selected Apps Which're in Main Arch Repo
 	
 ```
-gimp kdenlive breeze-icons audacity libreoffice-fresh vlc qt4 bleachbit catfish transmission-gtk simplescreenrecorder telegram-desktop
+gimp kdenlive frei0r-plugins breeze-icons audacity libreoffice-fresh vlc qt4 bleachbit catfish transmission-gtk simplescreenrecorder telegram-desktop
 ```
 
 ## Selected Apps Which're in AUR Repo
