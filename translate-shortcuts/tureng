@@ -1,0 +1,3 @@
+#!/usr/bin/env bash  
+text="$(xsel -o)"  
+/usr/bin/firefox --new-window "tureng.com/en/turkish-english/$(echo $text)"

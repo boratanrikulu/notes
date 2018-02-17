@@ -1,0 +1,3 @@
+#!/usr/bin/env bash  
+text="$(xsel -o)"  
+/usr/bin/firefox --new-window "https://translate.google.com/#en/tr/$(echo $text)"
