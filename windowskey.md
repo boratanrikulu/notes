@@ -1,0 +1,1 @@
+	grep -aPo '[\w]{5}-[\w]{5}-[\w]{5}-[\w]{5}-[\w]{5}' /sys/firmware/acpi/tables/MSDM
