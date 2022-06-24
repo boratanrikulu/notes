@@ -22,7 +22,7 @@ ddcutil -d 1 getvcp 12
 inc
 
 ```
-ddcutil -d 1 setvcp 10 +5
+ddcutil -d 1 setvcp 10 + 5
 ```
 
 dec
